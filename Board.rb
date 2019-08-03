@@ -1,5 +1,5 @@
 require_relative 'Piece.rb'
-class rows
+class Board
   #this is the method that populates the rows with the desired pieces going in each spot for black and white
   attr_reader :rows
   def populate
@@ -36,7 +36,7 @@ class rows
 
     end
     
-    
+  end
     
     
    
@@ -48,18 +48,29 @@ class rows
 
   
   end
-
-   
-  def valid_pos?(pos)
-    row,col = pos[0],pos[1]
-    if row >7 || row <0 
-      return false
-    end
-    if col > 7 || col < 0 
-      return false
-    end
-    return true
+#method that puts desired piece at a specific pos
+  def add_piece(piece,pos)
   end
-end
+#method that decides whether the current color has checkmate against the opposing team
+  def checkmate?(color)
+
+
+  end
+
+  def in_check?(color)
+    #checks if the color specified is in check, p much a reverse checkmate? method
+  end
+  #method that decides in the context of the move_piece method whether a spot is valid or not, simple in bounds stuff  
+    def valid_pos?(pos)
+      row,col = pos[0],pos[1]
+      if row >7 || row <0 
+        return false
+      end
+      if col > 7 || col < 0 
+        return false
+      end
+      return true
+    end
   
+
 end
