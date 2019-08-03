@@ -1,11 +1,9 @@
 require_relative 'Piece.rb'
-class Board
-  #this is the method that populates the board with the desired pieces going in each spot for black and white
+class rows
+  #this is the method that populates the rows with the desired pieces going in each spot for black and white
+  attr_reader :rows
   def populate
-    
-
-
-    @board.map.with_index do |row,idx1|
+    @rows.map.with_index do |row,idx1|
       row.map.with_index do |spot,idx2|
         #pawns
         if idx1 == 1
@@ -25,16 +23,43 @@ class Board
   end
 
   def initialize()
-    @board = Array.new(8) {Array.new(8)}
-    populate
+    @rows = Array.new(8) {Array.new(8)}
+    @sentinel = NullPiece.new
   end
 
-  def move_piece(start_pos,end_pos)
+  def move_piece(color,start_pos,end_pos)
     if self[start_pos] == nil
       raise "There is no piece there my dude"
     end
-    if inside_bounds?(end_pos)      
+    if valid_pos?(end_pos)      
       #move piece to the new spot and possibly remove piece in the end_pos
+
     end
+    
+    
+    
+    
+   
+  def [](pos)
+
   end
+
+  def []=(pos,val)
+
+  
+  end
+
+   
+  def valid_pos?(pos)
+    row,col = pos[0],pos[1]
+    if row >7 || row <0 
+      return false
+    end
+    if col > 7 || col < 0 
+      return false
+    end
+    return true
+  end
+end
+  
 end
