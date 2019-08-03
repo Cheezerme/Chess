@@ -9,10 +9,11 @@ class Piece
   def to_s
     
   ##
-  class NullPiece < Piece
-    def initialize
-      @type = nil
-      @team = nil
-    end
+  end
+end
+class NullPiece < Piece
+  def initialize
+    @type = nil
+    @team = nil
   end
 end
