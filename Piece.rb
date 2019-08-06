@@ -1,6 +1,6 @@
-require 'Rainbow'
+# require 'Rainbow'
 class Piece
-
+  attr_reader :pos
   def initialize(color,board,pos)
     @color = color
     @board = board
@@ -36,5 +36,95 @@ class NullPiece < Piece
   end
 end
 
-class Rook_ < Piece
-  include
+class Rook < Piece
+  # include Slideable
+  def symbol
+    ♖
+  end
+
+  def move_dirs
+
+
+  end
+end
+
+class Bishop < Piece
+  # include Slideable
+  def symbol
+    ♗
+  end
+
+  def move_dirs
+
+
+  end
+end
+
+class Queen < Piece
+  # include Slideable
+  def symbol
+    ♕
+  end
+
+  def move_dirs
+
+
+  end
+
+end
+
+class Knight < Piece
+  # include Stepable
+  def symbol
+    ♘
+  end
+
+  def move_diffs
+
+
+  end
+end
+class King < Piece
+  # include Stepable
+  def symbol
+    ♔
+  end
+
+  def move_diffs
+
+
+  end
+end
+
+class Pawn < Piece
+    class Knight < Piece
+    # include Stepable
+    def symbol
+      ♙
+    end
+
+    def move_dirs
+
+
+    end
+    private
+    def at_start_row?
+      if self.pos[1] == 1 || self.pos[6] == 1 
+        return true 
+      end
+    end
+    private
+    def forward_dir
+      #returns 1 or -1 depending on poitional color factors
+    end
+    private 
+    def forward_steps
+      #method that handles step amount avaliable? idk what this is
+    end
+
+    private
+    def side_attacks
+      #method that checks avaliable side/diagonal position piece taking
+    end
+  end
+end
