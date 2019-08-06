@@ -7,17 +7,24 @@ class Board
       row.map.with_index do |spot,idx2|
         #pawns
         if idx1 == 1
-          Piece.new(pawn,:white)
+          Pawn.new(:black,self,[idx1,idx2])
         elsif idx1 == 6
-          Piece.new(pawn,:black)
+          Pawn.new(:black,self,[idx1,idx2])
         end
         #rooks
         if idx1 == 0 && idx2== 0 || idx1 == 0 && idx2== 7
-          Piece.new(rook,:white)
+          Rook.new(:white,self,[idx1,idx2])
 
-        elsif idx1 == 8 && idx2== 0 || idx1 == 7 && idx2== 7
-          Piece.new(rook,:black)
+        elsif idx1 == 7 && idx2== 0 || idx1 == 7 && idx2== 7
+          Rook.new(:black,self,[idx1,idx2])
         end
+        #knights
+        if ( idx1  == 0 && idx2 == 1 )|| (idx1 == 0 && idx2 == 7)
+          Knight.new(:white,self,[idx1,idx2])
+        elsif ( idx1  == 7 && idx2 == 1 )|| (idx1 == 7 && idx2 == 7)
+          Knight.new(:black,self,[idx1,idx2])
+        end
+
       end
     end
   end

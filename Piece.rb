@@ -1,6 +1,6 @@
 # require 'Rainbow'
 class Piece
-  attr_reader :pos
+  attr_accessor :pos
   def initialize(color,board,pos)
     @color = color
     @board = board
@@ -14,11 +14,11 @@ class Piece
     #returns an array of all valid move positions for specified piece (self)
   end
   def pos=(val)
-    #unclear to me what this does atm
+    self.pos = val
   end
 
   def symbol
-    #something about giving the piece a good visual for printing maybe?
+    #this is the parent class so there is no need for an actual symbol, never called as vanilla.
   end
 
   private 
