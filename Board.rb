@@ -6,24 +6,31 @@ class Board
     @rows.map.with_index do |row,idx1|
       row.map.with_index do |spot,idx2|
         #pawns
+        pos = pos
         if idx1 == 1
-          Pawn.new(:black,self,[idx1,idx2])
+          Pawn.new(:black,self,pos)
         elsif idx1 == 6
-          Pawn.new(:black,self,[idx1,idx2])
+          Pawn.new(:black,self,pos)
         end
         #rooks
         if idx1 == 0 && idx2== 0 || idx1 == 0 && idx2== 7
-          Rook.new(:white,self,[idx1,idx2])
+          Rook.new(:white,self,pos)
 
         elsif idx1 == 7 && idx2== 0 || idx1 == 7 && idx2== 7
-          Rook.new(:black,self,[idx1,idx2])
+          Rook.new(:black,self,pos)
         end
         #knights
         if ( idx1  == 0 && idx2 == 1 )|| (idx1 == 0 && idx2 == 7)
-          Knight.new(:white,self,[idx1,idx2])
+          Knight.new(:white,self,pos)
         elsif ( idx1  == 7 && idx2 == 1 )|| (idx1 == 7 && idx2 == 7)
-          Knight.new(:black,self,[idx1,idx2])
+          Knight.new(:black,self,pos)
         end
+        #queens
+        if (idx1 == 0 && idx2 == 3)
+          Queen.new(:white,self,pos)
+        elsif (idx1 == 0 && idx2 == 3)
+          Queen.new(:white,self,pos)
+
 
       end
     end
