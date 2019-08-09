@@ -5,21 +5,30 @@ class Piece
     @color = color
     @board = board
     @pos = pos
-    
   end
 
   def to_s
     self.symbol
   end
+
   def valid_moves
-    #returns an array of all valid move positions for specified piece (self)
+
   end
+
   def pos=(val)
     self.pos = val
   end
 
+  def row
+    pos[0]
+  end
+
+  def col
+    pos[1]
+  end
+
   def symbol
-    #this is the parent class so there is no need for an actual symbol, never called as vanilla.
+    
   
   end
   
@@ -29,21 +38,13 @@ class Piece
   
   private 
   def move_into_check?(end_pos)
-    #method used to check if moving that piece into specified position will put
+  
   end
 end
 
-class NullPiece < Piece
-  def initialrowsize
-    @value = nil
-  end
-  def symbol
-    #returns blank square for a null piece position
-  end
-end
 
 class Rook < Piece
-  # include Slideable
+   include Slideable
   def symbol
     "♖"
   end
@@ -51,10 +52,11 @@ class Rook < Piece
   def move_dirs
     LINEAR_DIRS
   end
+  
 end
 
 class Bishop < Piece
-  # include Slideable
+  include Slideable
   def symbol
     "♗"
   end
@@ -66,14 +68,14 @@ class Bishop < Piece
 end
 
 class Queen < Piece
-  # include Slideable
+   include Slideable
   def symbol
     "♕"
   end
 
   def move_dirs
     DIAGONAL_DIRS
-    LINEAR_DIRS
+    HORIZONTAL_DIRS
   end
 
 end
@@ -145,56 +147,5 @@ class Spot
 end
 
 
-module Slideable
-
-  DIAGONAL_DIRS = [[1,1], [-1,1], [1,-1], [-1,-1]]
-  LINEAR_DIRS = [[0,1],[1,0],[0,-1],[-1,0]]
-  def horizontal_dirs
-
-  end
-
-  def diagonal_dirs
-
-  end
-
-  def moves
 
 
-  end
-
-  private
-  def move_dirs
-
-  end
-
-  private
-
-  def grow_unblocked_moves_in_dir(dx,dy)
-
-
-  end
-
-end
-
-end
-
-
-
-
-
-module Stepable
-
-  def moves
-
-  end
-  private
-  def move_diffs
-    if self.is_a? Knight
-        return [[2,1],[1,2],[-2,1],[-1,2],[2,-1],[1,-2],[-1,-2],[-2,-1]]
-    elsif self.is_a? King
-        return [[1,1],[-1,1],[1,-1],[-1,-1],[0,1],[1,0],[0,-1],[-1,0]]
-    end
-  end
-
-
-end
