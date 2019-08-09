@@ -9,7 +9,7 @@ module Slideable
         end
       end
     end
-  
+
 
   def diagonal_dirs(moves)
     DIAGONAL_DIRS.each do |val|
@@ -50,3 +50,4 @@ module Slideable
   end
 
 end
+

@@ -12,7 +12,7 @@ class Piece
   end
 
   def valid_moves
-
+    #basically moves
   end
 
   def pos=(val)
@@ -87,8 +87,7 @@ class Knight < Piece
   end
 
   def move_diffs
-
-
+    
   end
 end
 class King < Piece
