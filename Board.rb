@@ -1,36 +1,55 @@
 require_relative 'Piece.rb'
+require 'byebug'
 class Board
   #this is the method that populates the rows with the desired pieces going in each spot for black and white
   attr_accessor :rows
   def populate
-    @rows.map.with_index do |row,idx1|
-      row.map.with_index do |spot,idx2|
+    @rows.each.with_index do |row,idx1|
+      row.each.with_index do |spot,idx2|
         #pawns
+        
         pos = pos
         if idx1 == 1
           Pawn.new(:black,self,pos)
         elsif idx1 == 6
-          Pawn.new(:black,self,pos)
+          @rows[idx1][idx2] = Pawn.new(:black,self,pos)
         end
         #rooks
-        if idx1 == 0 && idx2== 0 || idx1 == 0 && idx2== 7
-          Rook.new(:white,self,pos)
+        if (idx1 == 0 && idx2== 0) || (idx1 == 0 && idx2== 7)
+          @rows[idx1][idx2] = Rook.new(:white,self,pos)
 
-        elsif idx1 == 7 && idx2== 0 || idx1 == 7 && idx2== 7
-          Rook.new(:black,self,pos)
+        elsif (idx1 == 7 && idx2== 0) || (idx1 == 7 && idx2== 7)
+          @rows[idx1][idx2] = Rook.new(:black,self,pos)
+        end
+
+        #bishops
+        if idx1 == 0 && idx2== 2 || idx1 == 0 && idx2== 5
+          @rows[idx1][idx2] = Bishop.new(:white,self,pos)
+
+        elsif (idx1 == 7 && idx2== 2) || (idx1 == 7 && idx2== 5)
+          @rows[idx1][idx2] = Bishop.new(:black,self,pos)
         end
         #knights
         if ( idx1  == 0 && idx2 == 1 )|| (idx1 == 0 && idx2 == 7)
-          Knight.new(:white,self,pos)
+          @rows[idx1][idx2] = Knight.new(:white,self,pos)
         elsif ( idx1  == 7 && idx2 == 1 )|| (idx1 == 7 && idx2 == 7)
-          Knight.new(:black,self,pos)
+          @rows[idx1][idx2] = Knight.new(:black,self,pos)
         end
         #queens
-        if (idx1 == 0 && idx2 == 3)
-          Queen.new(:white,self,pos)
+        if (idx1 == 7 && idx2 == 3)
+          @rows[idx1][idx2] = Queen.new(:black,self,pos)
         elsif (idx1 == 0 && idx2 == 3)
-          Queen.new(:white,self,pos)
-
+          @rows[idx1][idx2] = Queen.new(:white,self,pos)
+        end
+        #kings
+         if (idx1 == 7 && idx2 == 4)
+          @rows[idx1][idx2] = King.new(:black,self,pos)
+        elsif (idx1 == 0 && idx2 == 4)
+          @rows[idx1][idx2] = King.new(:white,self,pos)
+        end
+        if @rows[idx1][idx2] == nil
+          Spot.new
+        end
 
       end
     end
@@ -55,11 +74,11 @@ class Board
     
    
   def [](pos)
-    @board[pos[0]][pos[1]]
+    @rows[pos[0]][pos[1]]
   end
 
   def []=(pos,val)
-    @board[pos[0]][pos[1]] = val
+    @rows[pos[0]][pos[1]] = val
   end
 #method that puts desired piece at a specific pos
   def add_piece(piece,pos)
@@ -96,5 +115,16 @@ class Board
   def dup
     #method used to duplicate a piece, maybe for end of board pawn situations?
   end
-
+  def print_board
+    @rows.each do |row|
+      row.each do |spot|
+        debugger
+        p "#{spot.symbol}"
+      end
+      puts
+    end
+  end
 end
+bord = Board.new
+bord.populate
+bord.print_board

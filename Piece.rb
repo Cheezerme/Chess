@@ -8,7 +8,7 @@ class Piece
   end
 
   def to_s
-    #elegant way to display piece w/ proper coloring  
+    self.symbol
   end
   def valid_moves
     #returns an array of all valid move positions for specified piece (self)
@@ -19,6 +19,7 @@ class Piece
 
   def symbol
     #this is the parent class so there is no need for an actual symbol, never called as vanilla.
+    " "
   end
 
   private 
@@ -39,7 +40,7 @@ end
 class Rook < Piece
   # include Slideable
   def symbol
-    ♖
+    "♖"
   end
 
   def move_dirs
@@ -51,7 +52,7 @@ end
 class Bishop < Piece
   # include Slideable
   def symbol
-    ♗
+    "♗"
   end
 
   def move_dirs
@@ -63,7 +64,7 @@ end
 class Queen < Piece
   # include Slideable
   def symbol
-    ♕
+    "♕"
   end
 
   def move_dirs
@@ -76,7 +77,7 @@ end
 class Knight < Piece
   # include Stepable
   def symbol
-    ♘
+    "♘"
   end
 
   def move_diffs
@@ -87,7 +88,7 @@ end
 class King < Piece
   # include Stepable
   def symbol
-    ♔
+    "♔"
   end
 
   def move_diffs
@@ -100,7 +101,7 @@ class Pawn < Piece
     class Knight < Piece
     # include Stepable
     def symbol
-      ♙
+      "♙"
     end
 
     def move_dirs
@@ -126,5 +127,13 @@ class Pawn < Piece
     def side_attacks
       #method that checks avaliable side/diagonal position piece taking
     end
+  end
+end
+class Spot < Piece
+  def initialize
+    @color = :none
+  end
+  def symbol
+    " "
   end
 end
