@@ -11,31 +11,30 @@ module Slideable
     end
 
 
-  def diagonal_dirs(moves)
+  def diagonal_dirs
+    movers = []
     DIAGONAL_DIRS.each do |val|
-        [0...7].each do |move_dist|
-          moves << [row+(val[0]*move_dist),col+val[1]*move_dist)
-        end
+      [0...7].each do |move_dist|
+        movers << [row+(val[0]*move_dist),col+(val[1]*move_dist)]
       end
+    end
+    movers
   end
 
   def moves
-
-      moves = []
-      if self.is_a?(Queen)
-        diagonal_dirs(moves)
-        horizontal_dirs(moves)
-      end
-      
-    
-      
-      if self.is_a?(Rook)
-        horizontal_dirs(moves)
-      end
-          
-      if self.is_a?(Bishop)
-        diagonal_dirs(moves)
-      end
+    moves = []
+    if self.is_a?(Queen)
+      moves += diagonal_dir
+      moves += horizontal_dirs
+    end
+    if self.is_a?(Rook)
+      moves += horizontal_dirs(moves)
+    end
+        
+    if self.is_a?(Bishop)
+      moves += diagonal_dirs(moves)
+    end
+    moves
   end
   private
   def move_dirs
@@ -46,8 +45,6 @@ module Slideable
 
   def grow_unblocked_moves_in_dir(dx,dy)
 
-
   end
 
 end
-

@@ -63,7 +63,6 @@ class Bishop < Piece
 
   def move_dirs
     DIAGONAL_DIRS
-
   end
 end
 
@@ -81,29 +80,24 @@ class Queen < Piece
 end
 
 class Knight < Piece
-  # include Stepable
+  include Stepable
   def symbol
     "♘"
   end
 
-  def move_diffs
-    
-  end
+  
 end
 class King < Piece
-  # include Stepable
+  include Stepable
   def symbol
     "♔"
   end
 
-  def move_diffs
-
-
-  end
+  
 end
 
 class Pawn < Piece
-    # include Stepable
+    include Stepable
     def symbol
       "♙"
     end

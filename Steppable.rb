@@ -5,6 +5,7 @@ module Stepable
     self.move_diffs.each do |move|
       move_list << [self.row+move[0],self.col+move[1]]
     end
+    move_list
   end
   private
   def move_diffs
@@ -18,3 +19,4 @@ end
 
 
 # self.pos = [1,3]
+
