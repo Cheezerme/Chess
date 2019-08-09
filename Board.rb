@@ -10,7 +10,7 @@ class Board
         
         pos = pos
         if idx1 == 1
-          Pawn.new(:black,self,pos)
+          @rows[idx1][idx2] = Pawn.new(:black,self,pos)
         elsif idx1 == 6
           @rows[idx1][idx2] = Pawn.new(:black,self,pos)
         end
@@ -30,9 +30,9 @@ class Board
           @rows[idx1][idx2] = Bishop.new(:black,self,pos)
         end
         #knights
-        if ( idx1  == 0 && idx2 == 1 )|| (idx1 == 0 && idx2 == 7)
+        if ( idx1  == 0 && idx2 == 1 )|| (idx1 == 0 && idx2 == 6)
           @rows[idx1][idx2] = Knight.new(:white,self,pos)
-        elsif ( idx1  == 7 && idx2 == 1 )|| (idx1 == 7 && idx2 == 7)
+        elsif ( idx1  == 7 && idx2 == 1 )|| (idx1 == 7 && idx2 == 6)
           @rows[idx1][idx2] = Knight.new(:black,self,pos)
         end
         #queens
@@ -48,7 +48,7 @@ class Board
           @rows[idx1][idx2] = King.new(:white,self,pos)
         end
         if @rows[idx1][idx2] == nil
-          Spot.new
+          @rows[idx1][idx2] = Spot.new
         end
 
       end
@@ -56,6 +56,7 @@ class Board
   end
 
   def initialize()
+
     @rows = Array.new(8) {Array.new(8)}
     @sentinel = NullPiece.new
   end
@@ -117,9 +118,10 @@ class Board
   end
   def print_board
     @rows.each do |row|
+      
       row.each do |spot|
-        debugger
-        p "#{spot.symbol}"
+      print "#{spot.symbol} "  
+        
       end
       puts
     end

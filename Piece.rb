@@ -19,7 +19,7 @@ class Piece
 
   def symbol
     #this is the parent class so there is no need for an actual symbol, never called as vanilla.
-    " "
+  
   end
 
   private 
@@ -98,7 +98,6 @@ class King < Piece
 end
 
 class Pawn < Piece
-    class Knight < Piece
     # include Stepable
     def symbol
       "♙"
@@ -127,13 +126,13 @@ class Pawn < Piece
     def side_attacks
       #method that checks avaliable side/diagonal position piece taking
     end
-  end
+  
 end
 class Spot < Piece
   def initialize
     @color = :none
   end
   def symbol
-    " "
+    "."
   end
 end
