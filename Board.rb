@@ -3,7 +3,46 @@ require 'byebug'
 class Board
   #this is the method that populates the rows with the desired pieces going in each spot for black and white
   attr_accessor :rows
-  def populate
+  
+
+  def initialize()
+
+    @rows = Array.new(8) {Array.new(8)}
+    
+    @graveyard = []
+  end
+
+  def move_piece(color,start_pos,end_pos)
+    if self[start_pos] == nil
+      raise "There is no piece there my dude"
+    end
+    if valid_pos?(end_pos)      
+      if self[end_pos].piece?
+        @graveyard << self[end_pos]
+      end
+      self[end_pos],self[start_pos] = self[start_pos],Spot.new
+    end
+    
+  end
+    
+    
+   
+  def [](pos)
+    @rows[pos[0]][pos[1]]
+  end
+
+
+  def []=(pos,val)
+    @rows[pos[0]][pos[1]] = val
+
+  end
+#method that puts desired piece at a specific pos
+  
+def add_piece(piece,pos)
+
+
+end
+def populate
     @rows.each.with_index do |row,idx1|
       row.each.with_index do |spot,idx2|
         #pawns
@@ -54,37 +93,6 @@ class Board
       end
     end
   end
-
-  def initialize()
-
-    @rows = Array.new(8) {Array.new(8)}
-    @sentinel = NullPiece.new
-  end
-
-  def move_piece(color,start_pos,end_pos)
-    if self[start_pos] == nil
-      raise "There is no piece there my dude"
-    end
-    if valid_pos?(end_pos)      
-      
-
-    end
-    
-  end
-    
-    
-   
-  def [](pos)
-    @rows[pos[0]][pos[1]]
-  end
-
-  def []=(pos,val)
-    @rows[pos[0]][pos[1]] = val
-  end
-#method that puts desired piece at a specific pos
-  def add_piece(piece,pos)
-
-  end
 #method that decides whether the current color has checkmate against the opposing team
   def checkmate?(color)
 
@@ -97,6 +105,7 @@ class Board
   #method that decides in the context of the move_piece method whether a spot is valid or not, simple in bounds stuff  
   def valid_pos?(pos)
     row,col = pos[0],pos[1]
+    #debugger
     if row >7 || row < 0 
       return false
     end
@@ -127,6 +136,9 @@ class Board
     end
   end
 end
+
 bord = Board.new
 bord.populate
+bord.print_board
+bord.move_piece(:white,[0,4],[7,7])
 bord.print_board

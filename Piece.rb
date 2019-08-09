@@ -5,6 +5,7 @@ class Piece
     @color = color
     @board = board
     @pos = pos
+    
   end
 
   def to_s
@@ -21,7 +22,11 @@ class Piece
     #this is the parent class so there is no need for an actual symbol, never called as vanilla.
   
   end
-
+  
+  def piece?
+    true
+  end
+  
   private 
   def move_into_check?(end_pos)
     #method used to check if moving that piece into specified position will put
@@ -29,7 +34,7 @@ class Piece
 end
 
 class NullPiece < Piece
-  def initialize
+  def initialrowsize
     @value = nil
   end
   def symbol
@@ -44,8 +49,7 @@ class Rook < Piece
   end
 
   def move_dirs
-
-
+    LINEAR_DIRS
   end
 end
 
@@ -56,7 +60,7 @@ class Bishop < Piece
   end
 
   def move_dirs
-
+    DIAGONAL_DIRS
 
   end
 end
@@ -68,8 +72,8 @@ class Queen < Piece
   end
 
   def move_dirs
-
-
+    DIAGONAL_DIRS
+    LINEAR_DIRS
   end
 
 end
@@ -128,11 +132,69 @@ class Pawn < Piece
     end
   
 end
-class Spot < Piece
-  def initialize
-    @color = :none
+class Spot 
+  def to_s
+    self.symbol
   end
   def symbol
     "."
   end
+  def piece?
+    false
+  end
+end
+
+
+module Slideable
+
+  DIAGONAL_DIRS = [[1,1], [-1,1], [1,-1], [-1,-1]]
+  LINEAR_DIRS = [[0,1],[1,0],[0,-1],[-1,0]]
+  def horizontal_dirs
+
+  end
+
+  def diagonal_dirs
+
+  end
+
+  def moves
+
+
+  end
+
+  private
+  def move_dirs
+
+  end
+
+  private
+
+  def grow_unblocked_moves_in_dir(dx,dy)
+
+
+  end
+
+end
+
+end
+
+
+
+
+
+module Stepable
+
+  def moves
+
+  end
+  private
+  def move_diffs
+    if self.is_a? Knight
+        return [[2,1],[1,2],[-2,1],[-1,2],[2,-1],[1,-2],[-1,-2],[-2,-1]]
+    elsif self.is_a? King
+        return [[1,1],[-1,1],[1,-1],[-1,-1],[0,1],[1,0],[0,-1],[-1,0]]
+    end
+  end
+
+
 end
