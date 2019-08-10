@@ -1,4 +1,6 @@
 # require 'Rainbow'
+require_relative 'Stepable.rb'
+require_relative 'Slideable.rb'
 class Piece
   attr_accessor :pos
   def initialize(color,board,pos)
@@ -85,7 +87,6 @@ class Knight < Piece
     "♘"
   end
 
-  
 end
 class King < Piece
   include Stepable
@@ -93,7 +94,6 @@ class King < Piece
     "♔"
   end
 
-  
 end
 
 class Pawn < Piece

@@ -4,17 +4,16 @@ module Slideable
   HORIZONTAL_DIRS = [[0,1],[1,0],[0,-1],[-1,0]]
   def horizontal_dirs(moves)
     HORIZONTAL_DIRS.each do |val|
-        [0...7].each do |move_dist|
-          moves << [row+(val[0]*move_dist),col+val[1]*move_dist)
-        end
+      (0...7).to_a.each do |move_dist|
+        moves << [row+(val[0]*move_dist),col+(val[1]*move_dist)]
       end
     end
-
+  end
 
   def diagonal_dirs
     movers = []
     DIAGONAL_DIRS.each do |val|
-      [0...7].each do |move_dist|
+      (0...7).to_a.each do |move_dist|
         movers << [row+(val[0]*move_dist),col+(val[1]*move_dist)]
       end
     end
